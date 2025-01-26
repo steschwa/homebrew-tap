@@ -1,7 +1,7 @@
 class Fq < Formula
-  desc "A command-line interface (CLI) tool to interact with Firestore"
+  desc "CLI tool to interact with Firestore"
   homepage "https://github.com/steschwa/fq"
-  url "https://github.com/steschwa/fq/archive/v1.2.3.tar.gz"
+  url "https://github.com/steschwa/fq/archive/refs/tags/v1.2.3.tar.gz"
   sha256 "11552de7615bd092e24063c492531f998d47bbace0c29145e04f5b27286ba29e"
   license "MIT"
 
@@ -16,4 +16,3 @@ class Fq < Formula
     system "#{bin}/fq", "--help"
   end
 end
-
