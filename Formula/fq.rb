@@ -15,7 +15,7 @@ class Fq < Formula
   depends_on "go" => :build
 
   def install
-    ldflags = "-s -w -X github.com/steschwa/fq/cmd.Version=#{version} -X github.com/steschwa/fq/cmd.CommitSHA=brew"
+    ldflags = "-s -w -X github.com/steschwa/fq/cmd.Version=#{version} -X github.com/steschwa/fq/cmd.Revision=brew"
     system "go", "build", *std_go_args(ldflags: ldflags)
   end
 
