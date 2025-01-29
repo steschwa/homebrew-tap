@@ -6,10 +6,10 @@ class Fq < Formula
   license "MIT"
 
   bottle do
-    root_url "https://github.com/steschwa/homebrew-tap/releases/download/fq-1.2.4"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "6e728d0a479bbd03df255e933b562e0c291dae7098e5eedba7b5e8984b12c7c0"
-    sha256 cellar: :any_skip_relocation, ventura:       "5e8edbb607ef5a486b7ca260615fa465fb5b2b1e879d0a38c8daa516ca4f828f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "3d1f5eebe71399f7b448eeb4667c5137f45078a50db2caa2631bb7dead72a473"
+    root_url "https://github.com/steschwa/homebrew-tap/releases/download/fq-1.3.0"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "f57317597cc465d9fb128407a376afc25c92f3b30234ede8319e300ed98dae2c"
+    sha256 cellar: :any_skip_relocation, ventura:       "2d0f5f85ae86578be7a4153d4255eb21960945ee91b62c50b7514016b97c7879"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c7bcf9087b4077713570deb8f073f9e51fc155691236ffe0f6c6f45f2009d2d5"
   end
 
   depends_on "go" => :build
