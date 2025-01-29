@@ -1,8 +1,8 @@
 class Fq < Formula
   desc "CLI tool to interact with Firestore"
   homepage "https://github.com/steschwa/fq"
-  url "https://github.com/steschwa/fq/archive/refs/tags/v1.2.4.tar.gz"
-  sha256 "90e3ceb1acf1658fe4e5b1471970c4a99c888ef369456e2e42885c8f4b77698a"
+  url "https://github.com/steschwa/fq/archive/refs/tags/v1.3.0.tar.gz"
+  sha256 "8700c7956fb12f8a60a25b15d40aa44d9a149490d3c9deb9c6d060ce7c88c5a3"
   license "MIT"
 
   bottle do
