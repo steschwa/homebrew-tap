@@ -1,14 +1,44 @@
-name: Brew publish
+name: Publish
 
 on:
-    pull_request_target:
-        types:
-            - labeled
+    pull_request:
+        branches: [main]
 
 jobs:
-    pr-pull:
-        if: contains(github.event.pull_request.labels.*.name, 'brew-ready')
-        runs-on: ubuntu-22.04
+    test:
+        strategy:
+            matrix:
+                os: [macos-13, macos-15]
+        runs-on: ${{ matrix.os }}
+        steps:
+            - name: Set up Homebrew
+              id: set-up-homebrew
+              uses: Homebrew/actions/setup-homebrew@master
+
+            - name: Cache Homebrew Bundler RubyGems
+              uses: actions/cache@v4
+              with:
+                  path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+                  key: ${{ matrix.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+                  restore-keys: ${{ matrix.os }}-rubygems-
+
+            - run: brew test-bot --only-cleanup-before
+
+            - run: brew test-bot --only-setup
+
+            - run: brew test-bot --only-tap-syntax
+
+            - run: brew test-bot --only-formulae
+
+            - name: Upload bottles as artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: bottles_${{ matrix.os }}
+                  path: "*.bottle.*"
+
+    publish:
+        runs-on: ubuntu-24.04
+        needs: [test]
         permissions:
             contents: write
             pull-requests: write
@@ -32,7 +62,6 @@ jobs:
                   branch: main
 
             - name: Delete branch
-              if: github.event.pull_request.head.repo.fork == false
               env:
                   BRANCH: ${{ github.event.pull_request.head.ref }}
               run: git push --delete origin "$BRANCH"
